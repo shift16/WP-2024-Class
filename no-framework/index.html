@@ -37,13 +37,24 @@
                 <div class="column is-three-quarters">
                     {{ message }}
                     <ul class="shelf">
-                        <li v-for="prod in list_of_products" class="bg-white">
+                        <li v-for="prod in list_of_products" @click="addToCart(product)">
                             <h3>{{ prod.name }}</h3>
                             <p>The price is {{ prod.price }}</p>
                         </li>
                     </ul>
                 </div>
-                <div class="column"></div>
+                <div class="column">
+                    <table class="table">
+                        <thead>
+                            <th>Product</th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="item in cart">
+                                <td>{{ item.product.name }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
