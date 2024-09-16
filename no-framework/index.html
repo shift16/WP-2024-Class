@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <style>
+        .shelf {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+    </style>
 <body>
     <div class="container">
         <h1 class="title">
@@ -12,7 +19,7 @@
             My Bulma Example
         </h1>
 
-        <ul class="list">
+        <ul clKcass="list">
             <li class="item">Something</li>
             <li class="item">Something else</li>
             <li class="item"></li>
@@ -24,7 +31,54 @@
         <div class="message is-success">
             <div class="message-body">is a success alert</div>
         </div>
+
+        <div class="section bg-white">
+            <div class="columns">
+                <div class="column is-three-quarters">
+                    {{ message }}
+                    <ul class="shelf">
+                        <li v-for="prod in list_of_products" class="bg-white">
+                            <h3>{{ prod.name }}</h3>
+                            <p>The price is {{ prod.price }}</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="column"></div>
+            </div>
+        </div>
     </div>
-    
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    const {createApp, ref} = Vue
+    createApp({
+        setup() {
+            const message = ref("Hello, vue!")
+
+            const list_of_products = ref([
+                { name: "Coke", price: 60 },
+                { name: "Cheese", price: 1000},
+                { name: "Pepsi", price: 200}
+            ])
+
+            const cart = ref([])
+
+            function addToCart(new_product) {
+                const item = cart.value.find(item => item.product.name === product.name)
+
+                if (item) {
+                    item.quantity++
+                } else {
+                    cart.value.push({ new_product, quantity: 1 })
+                }
+
+            }
+
+            return {
+                message, list_of_products, cart, addToCart
+            }
+        }
+    }).mount(".section")
+</script>
 </body>
 </html>
