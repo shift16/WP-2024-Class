@@ -1,0 +1,12 @@
+{
+  "name": "In Class Repository",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node server/index.mjs"
+  },
+
+  "dependencies": {
+    "express": "^4"
+  }
+}
